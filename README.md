@@ -53,7 +53,7 @@ A comprehensive real estate platform built with Spring Boot 4, Elasticsearch, an
 - **Security**: Spring Security with JWT
 - **Database**: Elasticsearch 9.2.3
 - **Caching**: Caffeine Cache
-- **Metrics**: Micrometer + Prometheus (can be added via docker - not configure in this project)
+- **Metrics**: Micrometer + Prometheus (can be added via docker - not configured in this project)
 - **Email**: Spring Mail
 - **Object Mapping**: MapStruct 1.6.3
 - **Build Tool**: Maven
@@ -289,7 +289,7 @@ This collection includes:
 3. Select the JSON file
 4. The collection will be organized with folders for each feature
 5. Create a new Environment in postman after you imported the collection (for example Real Estate Listing Platform)
-6. Create two variables: **agent_email** and **user_email** and set your real existing email address (make sure the 2fa enabled email address is the agent and the secondary is the user (home-seeker))
+6. Create two variables: **agent_email** and **user_email** and set your real existing email address (recommended: the 2fa enabled email address is the agent and the secondary is the user (home-seeker))
 7. Run the tests
 
 ### Sample Test Credentials
