@@ -1,0 +1,2740 @@
+{
+  "info": {
+    "_postman_id": "6971e446-76c0-4348-b608-e814d06cf0ab",
+    "name": "Real Estate Listing Platform Final",
+    "description": "API collection for Real Estate Listing Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13581088"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register Agent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"agent_Test\",\n    \"email\": \"agent@example.com\",\n    \"password\": \"Password123#\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"phoneNumber\": \"+1234567890\",\n    \"role\": \"AGENT\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Home Seeker",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"seeker_Test\",\n    \"email\": \"seeker@example.com\",\n    \"password\": \"Password123#\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"+1987654321\",\n    \"role\": \"USER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login (HOME SEEKER)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"seeker@example.com\",\n  \"password\": \"Password123#\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login (AGENT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"agent@example.com\",\n    \"password\": \"Password123#\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login (DB HOME SEEKER)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.collectionVariables.set(\"seeker_token\", jsonData.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"Password123#\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login (DB AGENT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.collectionVariables.set(\"agent_token\", jsonData.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{agent_email}}\",\n    \"password\": \"Password123#\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Property Search",
+      "item": [
+        {
+          "name": "Search - All Properties (No Filters)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ]
+            },
+            "description": "Get all active property listings without any filters"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By Price Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?minPrice=200000&maxPrice=500000",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "minPrice",
+                  "value": "200000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "500000"
+                }
+              ]
+            },
+            "description": "Search properties within a price range of $200,000 to $500,000"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By City",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?city=San Francisco",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "city",
+                  "value": "San Francisco"
+                }
+              ]
+            },
+            "description": "Search properties in San Francisco"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By ZIP Code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?zipCode=94102",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "zipCode",
+                  "value": "94102"
+                }
+              ]
+            },
+            "description": "Search properties in ZIP code 94102"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By Neighborhood",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?neighborhood=Mission District",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "neighborhood",
+                  "value": "Mission District"
+                }
+              ]
+            },
+            "description": "Search properties in Mission District neighborhood"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By Property Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?propertyType=HOUSE",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "propertyType",
+                  "value": "HOUSE",
+                  "description": "Options: HOUSE, APARTMENT, CONDO, TOWNHOUSE, LAND, COMMERCIAL, MULTI_FAMILY"
+                }
+              ]
+            },
+            "description": "Search for houses only"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By Bedrooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?minBedrooms=3&maxBedrooms=4",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "minBedrooms",
+                  "value": "3"
+                },
+                {
+                  "key": "maxBedrooms",
+                  "value": "4"
+                }
+              ]
+            },
+            "description": "Search properties with 3-4 bedrooms"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By Bathrooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?minBathrooms=2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "minBathrooms",
+                  "value": "2"
+                }
+              ]
+            },
+            "description": "Search properties with at least 2 bathrooms"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - By Square Feet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?minSquareFeet=1500&maxSquareFeet=3000",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "minSquareFeet",
+                  "value": "1500"
+                },
+                {
+                  "key": "maxSquareFeet",
+                  "value": "3000"
+                }
+              ]
+            },
+            "description": "Search properties between 1500-3000 square feet"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - With Features (Garage)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?hasGarage=true",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "hasGarage",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "Search properties that have a garage"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - With Features (Pool)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?hasPool=true",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "hasPool",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "Search properties that have a pool"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - Sort by Price (Ascending)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?sortBy=price&sortDirection=asc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "price"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                }
+              ]
+            },
+            "description": "Search all properties sorted by price (lowest to highest)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - Sort by Price (Descending)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?sortBy=price&sortDirection=desc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "price"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Search all properties sorted by price (highest to lowest)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - Sort by Date Listed (Newest First)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?sortBy=dateCreated&sortDirection=desc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "dateCreated"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Search all properties sorted by listing date (newest first)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - Sort by Property Size",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?sortBy=squareFeet&sortDirection=desc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "squareFeet"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Search all properties sorted by size (largest first)"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - With Pagination (Page 0)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?page=0&size=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Get first page with 10 results"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - With Pagination (Page 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?page=1&size=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Get second page with 10 results"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - Complex Query (Multiple Filters)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?city=San Francisco&propertyType=HOUSE&minPrice=300000&maxPrice=800000&minBedrooms=3&minBathrooms=2&hasGarage=true&sortBy=price&sortDirection=asc&page=0&size=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "city",
+                  "value": "San Francisco"
+                },
+                {
+                  "key": "propertyType",
+                  "value": "HOUSE"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "300000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "800000"
+                },
+                {
+                  "key": "minBedrooms",
+                  "value": "3"
+                },
+                {
+                  "key": "minBathrooms",
+                  "value": "2"
+                },
+                {
+                  "key": "hasGarage",
+                  "value": "true"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Complex search: Houses in San Francisco, 3+ bedrooms, 2+ bathrooms, $300k-$800k, with garage, sorted by price"
+          },
+          "response": []
+        },
+        {
+          "name": "Search - Complex Query (Multiple Filters) 2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?city=San Francisco&propertyType=HOUSE&minPrice=20000&maxPrice=5000000&minBedrooms=3&minBathrooms=2&hasGarage=true&sortBy=price&sortDirection=asc&page=0&size=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "city",
+                  "value": "San Francisco"
+                },
+                {
+                  "key": "propertyType",
+                  "value": "HOUSE"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "20000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "5000000"
+                },
+                {
+                  "key": "minBedrooms",
+                  "value": "3"
+                },
+                {
+                  "key": "minBathrooms",
+                  "value": "2"
+                },
+                {
+                  "key": "hasGarage",
+                  "value": "true"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Complex search: Houses in San Francisco, 3+ bedrooms, 2+ bathrooms, $300k-$800k, with garage, sorted by price"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Geolocation Search",
+      "item": [
+        {
+          "name": "Geolocation - Near San Francisco Downtown (5km)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.7749&longitude=-122.4194&distance=5",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.7749",
+                  "description": "San Francisco downtown latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4194",
+                  "description": "San Francisco downtown longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "5",
+                  "description": "Search radius in kilometers"
+                }
+              ]
+            },
+            "description": "Find all properties within 5km of San Francisco downtown"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Sort by Distance (Nearest First)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.8044&longitude=-122.2711&distance=10&sortBy=distance&sortDirection=asc",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.8044",
+                  "description": "Oakland downtown latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.2711",
+                  "description": "Oakland downtown longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                }
+              ]
+            },
+            "description": "Find properties within 10km of Oakland, sorted by distance (nearest first)"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - With Price Filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.7749&longitude=-122.4194&distance=8&maxPrice=1500000&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.7749"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4194"
+                },
+                {
+                  "key": "distance",
+                  "value": "8"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "1500000"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Properties within 8km under $1.5M, sorted by distance"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Near Work (Tech Campus)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.4220&longitude=-122.0841&distance=5&minBedrooms=1&maxBedrooms=2&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.4220",
+                  "description": "Google campus latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.0841",
+                  "description": "Google campus longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "5"
+                },
+                {
+                  "key": "minBedrooms",
+                  "value": "1"
+                },
+                {
+                  "key": "maxBedrooms",
+                  "value": "2"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Find 1-2 bedroom properties within 5km of Google campus"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Luxury Near Golden Gate",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.8199&longitude=-122.4783&distance=3&minPrice=2000000&hasPool=true&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.8199",
+                  "description": "Golden Gate Bridge latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4783",
+                  "description": "Golden Gate Bridge longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "3"
+                },
+                {
+                  "key": "minPrice",
+                  "value": "2000000"
+                },
+                {
+                  "key": "hasPool",
+                  "value": "true"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Luxury properties with pool within 3km of Golden Gate Bridge"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Family Home Near Schools (Palo Alto)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.4419&longitude=-122.1430&distance=2&propertyType=HOUSE&minBedrooms=3&hasGarden=true&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.4419"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.1430"
+                },
+                {
+                  "key": "distance",
+                  "value": "2"
+                },
+                {
+                  "key": "propertyType",
+                  "value": "HOUSE"
+                },
+                {
+                  "key": "minBedrooms",
+                  "value": "3"
+                },
+                {
+                  "key": "hasGarden",
+                  "value": "true"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Family homes (3+ BR with garden) within 2km of Palo Alto"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Near Stanford University",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.4275&longitude=-122.1697&distance=3&maxPrice=1200000&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.4275"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.1697"
+                },
+                {
+                  "key": "distance",
+                  "value": "3"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "1200000"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Properties within 3km of Stanford under $1.2M"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Wide Area Search (20km)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.7749&longitude=-122.4194&distance=20&sortBy=distance&page=0&size=50",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.7749"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4194"
+                },
+                {
+                  "key": "distance",
+                  "value": "20"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Wide area search within 20km radius"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Small Radius (1km)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.7794&longitude=-122.4194&distance=1&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.7794",
+                  "description": "SF City Hall latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4194",
+                  "description": "SF City Hall longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "1",
+                  "description": "Very small radius - immediate vicinity only"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Find properties in immediate vicinity (1km) of SF City Hall"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Small Radius (2km)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.7794&longitude=-122.4194&distance=2&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.7794",
+                  "description": "SF City Hall latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4194",
+                  "description": "SF City Hall longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "2",
+                  "description": "Very small radius - immediate vicinity only"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Find properties in immediate vicinity (1km) of SF City Hall"
+          },
+          "response": []
+        },
+        {
+          "name": "Geolocation - Airport Proximity (SFO)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listings/search?latitude=37.6213&longitude=-122.3790&distance=10&sortBy=distance",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.6213",
+                  "description": "SFO Airport latitude"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.3790",
+                  "description": "SFO Airport longitude"
+                },
+                {
+                  "key": "distance",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                }
+              ]
+            },
+            "description": "Properties within 10km of SFO Airport"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Property Listings",
+      "item": [
+        {
+          "name": "Create Listing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Beautiful 3BR Family Home in Pacific Heights\",\n  \"description\": \"Spacious and modern family home with stunning views. Features hardwood floors, updated kitchen with granite countertops, and a large backyard perfect for entertaining.\",\n  \"propertyType\": \"HOUSE\",\n  \"street\": \"123 Main St\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"zipCode\": \"94102\",\n  \"neighborhood\": \"Pacific Heights\",\n  \"location\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  },\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"squareFeet\": 2000,\n  \"yearBuilt\": 2010,\n  \"price\": 850000,\n  \"photoUrls\": [\n    \"https://example.com/photo1.jpg\",\n    \"https://example.com/photo2.jpg\",\n    \"https://example.com/photo3.jpg\"\n  ],\n  \"floorPlanUrl\": \"https://example.com/floorplan.pdf\",\n  \"virtualTourUrl\": \"https://example.com/tour\",\n  \"features\": [\"Hardwood Floors\", \"Updated Kitchen\", \"Granite Countertops\", \"Backyard\", \"Garage\"],\n  \"hasGarage\": true,\n  \"garageSpaces\": 2,\n  \"hasPool\": false,\n  \"hasGarden\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Cannot Create Listing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403 Forbidden\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Beautiful 3BR Family Home in Pacific Heights\",\n  \"description\": \"Spacious and modern family home with stunning views. Features hardwood floors, updated kitchen with granite countertops, and a large backyard perfect for entertaining.\",\n  \"propertyType\": \"HOUSE\",\n  \"street\": \"123 Main St\",\n  \"city\": \"San Francisco\",\n  \"state\": \"CA\",\n  \"zipCode\": \"94102\",\n  \"neighborhood\": \"Pacific Heights\",\n  \"location\": {\n    \"lat\": 37.7749,\n    \"lon\": -122.4194\n  },\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"squareFeet\": 2000,\n  \"yearBuilt\": 2010,\n  \"price\": 850000,\n  \"photoUrls\": [\n    \"https://example.com/photo1.jpg\",\n    \"https://example.com/photo2.jpg\",\n    \"https://example.com/photo3.jpg\"\n  ],\n  \"floorPlanUrl\": \"https://example.com/floorplan.pdf\",\n  \"virtualTourUrl\": \"https://example.com/tour\",\n  \"features\": [\"Hardwood Floors\", \"Updated Kitchen\", \"Granite Countertops\", \"Backyard\", \"Garage\"],\n  \"hasGarage\": true,\n  \"garageSpaces\": 2,\n  \"hasPool\": false,\n  \"hasGarden\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Listings",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/search?minPrice=2000&maxPrice=10000000&city=San Francisco&propertyType=HOUSE&minBedrooms=2&maxBedrooms=4&minBathrooms=2&maxBathrooms=3&sortBy=price&sortDirection=asc&page=0&size=20",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "minPrice",
+                  "value": "2000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "10000000"
+                },
+                {
+                  "key": "city",
+                  "value": "San Francisco"
+                },
+                {
+                  "key": "propertyType",
+                  "value": "HOUSE"
+                },
+                {
+                  "key": "minBedrooms",
+                  "value": "2"
+                },
+                {
+                  "key": "maxBedrooms",
+                  "value": "4"
+                },
+                {
+                  "key": "minBathrooms",
+                  "value": "2"
+                },
+                {
+                  "key": "maxBathrooms",
+                  "value": "3"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "20"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search with Geo Distance",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/search?latitude=37.7749&longitude=-122.4194&distance=10&minBedrooms=2&sortBy=distance&sortDirection=asc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "37.7749"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-122.4194"
+                },
+                {
+                  "key": "distance",
+                  "value": "10"
+                },
+                {
+                  "key": "minBedrooms",
+                  "value": "2"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "distance"
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Listings",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"property-listing-id\", jsonData.content[0].id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Photos (STAFF)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n    {\n        \"url\": \"https://example.com/1.png\"\n    },\n    {\n        \"url\": \"https://example.com/2.png\"\n    }\n]"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}/photos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}",
+                "photos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Listing by ID (AGENT)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Listing by ID (HOME SEEKER)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Listing (AGENT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Beautiful 3BR Family Home\",\n  \"price\": 875000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Cannot Update Listing",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403 Forbidden\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Beautiful 3BR Family Home\",\n  \"price\": 875000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Updated Listing by ID (AGENT)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Listing Status (UNDER_CONTRACT)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"UNDER_CONTRACT\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Listing Status (SOLD)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"SOLD\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Listing",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{property-listing-id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{property-listing-id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Listings",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/my-listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "my-listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Cannot Get My Listings Endpoint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403 Forbidden\", function () {\r",
+                  "    pm.response.to.have.status(403);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/my-listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "my-listings"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Property Viewings",
+      "item": [
+        {
+          "name": "Get My Listings (AGENT)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"property-listing-id-viewing-1\", jsonData.content[0].id);\r",
+                  "pm.collectionVariables.set(\"property-listing-id-viewing-2\", jsonData.content[1].id);\r",
+                  "pm.collectionVariables.set(\"property-listing-id-viewing-empty\", jsonData.content[3].id); // empty "
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/my-listings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "my-listings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Request Viewing (USER)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"property-viewing-id\", jsonData.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"propertyListingId\": \"{{property-listing-id-viewing-1}}\",\n    \"scheduledDateTime\": \"2026-02-11T14:00\",\n    \"notes\": \"I really like this listing\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/user/request-viewing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "user",
+                "request-viewing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Request Viewing 2 (USER)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"property-viewing-id-2\", jsonData.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"propertyListingId\": \"{{property-listing-id-viewing-2}}\",\n    \"scheduledDateTime\": \"2026-02-11T14:00\",\n    \"notes\": \"I really like this listing\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/user/request-viewing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "user",
+                "request-viewing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test Double Booking (USER)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 409 Conflict\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"propertyListingId\": \"{{property-listing-id-viewing-1}}\",\n    \"scheduledDateTime\": \"2026-02-11T14:30\",\n    \"notes\": \"I really like this listing\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/user/request-viewing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "user",
+                "request-viewing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Viewings (USER)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Viewings (AGENT)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/agent",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "agent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Confirm Viewing (AGENT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"confirmed-property-viewing-id\", jsonData.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyViewingId\": \"{{property-viewing-id}}\",\n  \"notes\": \"I am happy you are interested in this property, happy to meet\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/agent/confirm-viewing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "agent",
+                "confirm-viewing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Scheduled Viewings (USER)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/user/scheduled",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "user",
+                "scheduled"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Scheduled Viewings (AGENT)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/agent",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "agent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reschedule Viewing (USER)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newScheduledDateTime\": \"2026-02-11T16:00\",\n  \"reason\": \"Schedule conflict with work (user)\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/{{confirmed-property-viewing-id}}/reschedule",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "{{confirmed-property-viewing-id}}",
+                "reschedule"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reschedule Viewing (AGENT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newScheduledDateTime\": \"2026-02-11T16:00\",\n  \"reason\": \"Schedule conflict with work (agent)\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/{{confirmed-property-viewing-id}}/reschedule",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "{{confirmed-property-viewing-id}}",
+                "reschedule"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Viewing (USER)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seeker_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Found another property that better suits my needs\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/{{confirmed-property-viewing-id}}/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "{{confirmed-property-viewing-id}}",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Confirm Viewing 2 (AGENT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"confirmed-property-viewing-id-2\", jsonData.id);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyViewingId\": \"{{property-viewing-id-2}}\",\n  \"notes\": \"I am happy you are interested in this property, happy to meet\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/agent/confirm-viewing",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "agent",
+                "confirm-viewing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Viewing Status 2 (COMPLETED) (AGENT)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"completed-property-listing-id\", jsonData.propertyListingId);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"COMPLETED\",\n  \"notes\": \"Completed viewing. Was nice to meet, the user really like the property. Very close to be sold\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/viewings/{{confirmed-property-viewing-id-2}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "viewings",
+                "{{confirmed-property-viewing-id-2}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Listing Status (SOLD)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{agent_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"SOLD\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/listings/{{completed-property-listing-id}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "listings",
+                "{{completed-property-listing-id}}",
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "agent_token",
+      "value": ""
+    },
+    {
+      "key": "seeker_token",
+      "value": ""
+    },
+    {
+      "key": "property-listing-id",
+      "value": ""
+    },
+    {
+      "key": "base_url",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "agent_from_db_id",
+      "value": ""
+    },
+    {
+      "key": "property-listing-id-viewing",
+      "value": ""
+    },
+    {
+      "key": "property-listing-id-viewing-2",
+      "value": ""
+    },
+    {
+      "key": "property-listing-id-viewing-1",
+      "value": ""
+    },
+    {
+      "key": "property-listing-id-viewing-empty",
+      "value": ""
+    },
+    {
+      "key": "property-viewing-id",
+      "value": ""
+    },
+    {
+      "key": "scheduled-property-listing-id",
+      "value": ""
+    },
+    {
+      "key": "requested-viewing-id",
+      "value": ""
+    },
+    {
+      "key": "requested-listing-id",
+      "value": ""
+    },
+    {
+      "key": "scheduled-property-viewing-id",
+      "value": ""
+    },
+    {
+      "key": "confirmed-property-viewing-id",
+      "value": ""
+    },
+    {
+      "key": "property-viewing-id-2",
+      "value": ""
+    },
+    {
+      "key": "confirmed-property-viewing-id-2",
+      "value": ""
+    },
+    {
+      "key": "completed-property-listing-id",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: elasticsearch:9.2.3
+    container_name: realestate-platform-elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data-realestate:/usr/share/elasticsearch/data
+    networks:
+      - pet-adoption-network
+
+volumes:
+  elasticsearch-data-realestate:
+    driver: local
+
+networks:
+  pet-adoption-network:
+    driver: bridge

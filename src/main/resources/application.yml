@@ -1,0 +1,102 @@
+spring:
+  application:
+    name: realestate
+
+  config:
+    import: optional:file:./application-local.properties
+
+  elasticsearch:
+    uris: ${ELASTICSEARCH_URL:http://localhost:9200}
+    username: ${ELASTICSEARCH_USERNAME:}
+    password: ${ELASTICSEARCH_PASSWORD:}
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    verify:
+      host: http://localhost:8080
+    properties:
+      mail:
+        smtp:
+          writetimeout: 10000
+          connectiontimeout: 10000
+          auth: true
+          starttls:
+            enable: true
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+app:
+  agent:
+    email: ${MAIL_USERNAME:agent1@realestate.com}
+  user:
+    email: ${USER_EMAIL:seeker1@email.com}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+jwt:
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}  # Must be set via environment variable
+  access-token-expiration: ${JWT_ACCESS_EXPIRATION:3600000}  # 1 hour
+  refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:604800000}  # 7 days
+
+security:
+  password:
+    bcrypt-strength: ${PASSWORD_BCRYPT_STRENGTH:12}
+    min-length: ${PASSWORD_MIN_LENGTH:8}
+  login-attempts:
+    max-attempts: ${LOGIN_MAX_ATTEMPTS:5}
+    lockout-duration-minutes: ${LOGIN_LOCKOUT_DURATION:15}
+
+logging:
+#  level:
+#    com.devtiro.realestate.security.SecurityAuditService: INFO
+#    org.springframework.security: TRACE
+
+  file:
+    name: logs/application.log
+    pattern:
+      file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+    # Custom appender for security logs
+    logback:
+      rollingpolicy:
+        max-file-size: 100MB
+        max-history: 30
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,caches
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 50ms,100ms,200ms,500ms,1s,2s
+
+viewing:
+  schedule:
+    time-limit-in-minutes: 60
+
+# logging.level.org.springframework.security=TRACE
+
