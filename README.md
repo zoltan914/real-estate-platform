@@ -1,5 +1,8 @@
 # Real Estate Listing Platform
 
+Credit to: Devtiro for project brief, and youtube videos www.youtube.com/@devtiro
+
+
 A comprehensive real estate platform built with Spring Boot 4, Elasticsearch, and JWT authentication. This platform enables real estate agents to manage property listings and allows home seekers to search properties and schedule viewings.
 
 ## Table of Contents
