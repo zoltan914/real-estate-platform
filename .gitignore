@@ -51,3 +51,4 @@ mvnw.cmd
 
 logs/
 application-local.properties
+*.zip
