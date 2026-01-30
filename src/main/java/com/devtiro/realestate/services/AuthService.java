@@ -109,7 +109,6 @@ public class AuthService {
     /**
      * Authenticate and login a user
      */
-    //@CacheEvict(value = "usersByEmail", key = "#request.email")
     public AuthResponse login(LoginRequest request, String ipAddress) {
         long loginStartTime = System.currentTimeMillis();
 

@@ -417,7 +417,6 @@ public class DataConfig {
      * The cached and the updated user id has mismatch!!
      */
 
-    //@Cacheable(value = "usersByEmail", key = "#result.email")
     private User createAgent(String email, String firstName, String lastName) {
         User agent = User.builder()
                 .username(firstName.toLowerCase() + "_" + lastName.toLowerCase())
@@ -458,7 +457,6 @@ public class DataConfig {
         return savedAgent;
     }
 
-    //@Cacheable(value = "usersByEmail", key = "#result.email")
     private User createHomeSeeker(String email, String firstName, String lastName, String phoneNumber) {
         User seeker = User.builder()
                 .username(firstName.toLowerCase() + "_" + lastName.toLowerCase())
