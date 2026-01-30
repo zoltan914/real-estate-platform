@@ -29,7 +29,7 @@ A comprehensive real estate platform built with Spring Boot 4, Elasticsearch, an
 - Confirm or reschedule viewing appointments
 
 ### For Home Seekers
-- Search properties with advanced filters (location, price, type, features)
+- Search properties with advanced filters (location, price, type, features, age ...)
 - Geo-spatial search with distance-based filtering
 - Request property viewings
 - Reschedule or cancel viewing appointments
@@ -41,7 +41,7 @@ A comprehensive real estate platform built with Spring Boot 4, Elasticsearch, an
 - Account lockout after failed login attempts
 - Comprehensive security audit logging
 - Caching with Caffeine for improved performance
-- Metrics and monitoring with Prometheus
+- Metrics and monitoring with Prometheus (Prometheus can be added via docker, currently not in the project)
 - Email notifications for viewing confirmations
 - Asynchronous processing for notifications
 - Full-text search with Elasticsearch
@@ -171,10 +171,10 @@ The `DataConfig.java` class serves as the application's data initialization laye
    - Generates 40+ sample property listings across multiple cities (San Francisco, Oakland, Berkeley, Palo Alto, San Jose, etc.)
    - Diverse property types: HOUSE, CONDO, APARTMENT, TOWNHOUSE, LAND
    - Realistic data including:
-     - Geo-coordinates for location-based searches
-     - Price ranges from ~525K to 4.5M
-     - Detailed property features and amenities
-     - Property-specific attributes (bedrooms, bathrooms, square footage, year built)
+      - Geo-coordinates for location-based searches
+      - Price ranges from ~525K to 4.5M
+      - Detailed property features and amenities
+      - Property-specific attributes (bedrooms, bathrooms, square footage, year built)
 
 3. **Cache Management**
    - Implements cache eviction strategies to prevent ID mismatches
@@ -290,7 +290,7 @@ This collection includes:
 4. The collection will be organized with folders for each feature
 5. Create a new Environment in postman after you imported the collection (for example Real Estate Listing Platform)
 6. Create two variables: **agent_email** and **user_email** and set your real existing email address (recommended: the 2fa enabled email address is the agent and the secondary is the user (home-seeker))
-7. Run the tests
+7. Run the test collection
 
 ### Sample Test Credentials
 
@@ -359,8 +359,6 @@ src/main/java/com/devtiro/realestate/
 The application uses Caffeine cache with the following configurations:
 
 - **usersByEmail**: Caches user lookups (100 max, 10min expiry)
-- **propertiesById**: Caches property details (500 max, 30min expiry)
-- **propertySearch**: Caches search results (100 max, 5min expiry)
 
 ## Security Features
 
@@ -468,10 +466,12 @@ Or stop the process using port 8080
 ## Performance Considerations
 
 1. **Caching**: Reduces database queries for frequently accessed data
-2. **Pagination**: All list endpoints support pagination to limit data transfer
-3. **Async Processing**: Email notifications sent asynchronously
-4. **Connection Pooling**: Elasticsearch client uses connection pooling
-5. **Lazy Loading**: Photos and related entities loaded on demand
+2. **Pagination**: Property listing endpoints support pagination to limit data transfer:
+   - GET - _**/api/listings**_
+   - GET - **/api/listings/my-listings**
+4. **Async Processing**: Email notifications sent asynchronously
+5. **Connection Pooling**: Elasticsearch client uses connection pooling
+6. **Lazy Loading**: Photos and related entities loaded on demand
 
 ## Development Guidelines
 

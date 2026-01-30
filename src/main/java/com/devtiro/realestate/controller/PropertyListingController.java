@@ -27,7 +27,7 @@ import java.util.List;
 public class PropertyListingController {
 
     private final PropertyListingService propertyListingService;
-    private final CacheManager cacheManager;
+    // private final CacheManager cacheManager;
 
     @PostMapping
     public ResponseEntity<PropertyListingResponseDto> createListing(
@@ -99,8 +99,8 @@ public class PropertyListingController {
                     direction = Sort.Direction.DESC) Pageable pageable,
             @AuthenticationPrincipal User user
     ) {
-        log.info("requesting my-listing endpoint with user id: {}, email: {}", user.getId(), user.getEmail());
-        log.info("In cache the id: {}", cacheManager.getCache("usersByEmail").get(user.getEmail(), User.class).getId());
+        // log.info("requesting my-listing endpoint with user id: {}, email: {}", user.getId(), user.getEmail());
+        // log.info("In cache the id: {}", cacheManager.getCache("usersByEmail").get(user.getEmail(), User.class).getId());
         return ResponseEntity.ok(propertyListingService.getMyPropertyListings(user.getId(), pageable));
     }
 
