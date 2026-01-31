@@ -185,8 +185,8 @@ The `DataConfig.java` class serves as the application's data initialization laye
    - Links properties to agent owners via email
 
 **Sample Users Created:**
-- **Agents**: "<your-real-gmail>", agent2@realestate.com, agent3@realestate.com
-- **Users**: "<your-real-secondary-gmail>", emily_davis@example.com, seeker2@email.com
+- **Agents**: <your-real-gmail>, agent2@realestate.com, agent3@realestate.com
+- **Users**: <your-real-secondary-gmail>, emily_davis@example.com, seeker2@email.com
 
 The configuration makes extensive use of the `@Value` annotation to inject email addresses from properties files, allowing easy customization of test accounts without code changes.
 
